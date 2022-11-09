@@ -20,30 +20,30 @@ try:
 
         with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
 
-            cur.execute('DROP TABLE IF EXISTS debtss')
+          ##  cur.execute('DROP TABLE IF EXISTS debtss')
 
 
-            create_script=''' CREATE TABLE IF NOT EXISTS debtss (
-                                id            int PRIMARY KEY,
-                                person        varchar(40) NOT NULL,
-                                debt_value    int,
-                                data_scadenta varchar(40))'''
+            ##create_script=''' CREATE TABLE IF NOT EXISTS debtss (
+            ##                    id            SERIAL PRIMARY KEY,
+            ##                    person        varchar(40) NOT NULL,
+            ##                    debt_value    int,
+            ##                    data_scadenta varchar(40))'''
             
-            cur.execute(create_script)
+            ## cur.execute(create_script)
 
-            insert_script = 'INSERT INTO debtss (id, person, debt_value, data_scadenta) VALUES (%s,%s,%s,%s)'
-            insert_value = [(1,'AS',200,'2022-11-10'),(2,'Agf',3200,'2022-03-12'),(3,'GG',321,"2022-04-12")]
+            insert_script = 'INSERT INTO debtss (person, debt_value, data_scadenta) VALUES (%s,%s,%s)'
+            insert_value = [("ion",200,"2022-23-1")]
 
             for record in insert_value:
                 cur.execute(insert_script, record)
             
-            ''' update_script = 'UPDATE debtss SET debt_value= debt_value - 50'
-            cur.execute(update_script)'''
-            '''
-            delete_script = 'DELETE FROM debtss WHERE person=%s'
-            delete_record=('Gigel',)
-            cur.execute(delete_script,delete_record)
-            '''
+        ##    update_script = 'UPDATE debtss SET debt_value= debt_value - 50'
+        ##    cur.execute(update_script)
+        ##    
+        ##    delete_script = 'DELETE FROM debtss WHERE person=%s'
+        ##    delete_record=('ion',)
+        ##    cur.execute(delete_script,delete_record)
+            
 
             cur.execute('SELECT * FROM DEBTSS')
             for record in cur.fetchall():
